@@ -2,6 +2,9 @@
 
 import random
 
+class Player:
+  def __init__(self, name):
+    self.name = name
 def drawBoard(board):
     # This function prints out the board that it was passed.
 
@@ -93,9 +96,9 @@ def chooseRandomMoveFromList(board, movesList):
     else:
         return None
 
-def getComputerMove(board, computerLetter):
+def getplayer2Move(board, player2Letter):
     # Given a board and the computer's letter, determine where to move and return that move.
-    if computerLetter == 'X':
+    if player2Letter == 'X':
         playerLetter = 'O'
     else:
         playerLetter = 'X'
@@ -105,16 +108,16 @@ def getComputerMove(board, computerLetter):
     for i in range(1, 10):
         copy = getBoardCopy(board)
         if isSpaceFree(copy, i):
-            makeMove(copy, computerLetter, i)
-            if isWinner(copy, computerLetter):
+            makeMove(copy, player2Letter, i)
+            if isWinner(copy, player2Letter):
                 return i
 
     # Check if the player could win on his next move, and block them.
     for i in range(1, 10):
         copy = getBoardCopy(board)
         if isSpaceFree(copy, i):
-            makeMove(copy, playerLetter, i)
-            if isWinner(copy, playerLetter):
+            makeMove(copy, player2Letter, i)
+            if isWinner(copy, player2Letter):
                 return i
 
     # Try to take one of the corners, if they are free.
@@ -140,15 +143,16 @@ def isBoardFull(board):
 print('Welcome to Tic Tac Toe!')
 print('What is Player 1\'s name?')
 player1name = input()
+player1 = Player(player1name)
 print('What is Player 2\'s name?')
 player2name = input()
-
+player2 = Player(player2name)
 while True:
     # Reset the board
     theBoard = [' '] * 10
     playerLetter, player2Letter = inputPlayerLetter()
     turn = whoGoesFirst()
-    print( + ' will go first.')
+    print(turn + ' will go first.')
     gameIsPlaying = True
 
     while gameIsPlaying:
@@ -156,11 +160,11 @@ while True:
             # Player 1's turn.
             drawBoard(theBoard)
             move = getPlayerMove(theBoard)
-            makeMove(theBoard, player2Letter, move)
+            makeMove(theBoard, playerLetter, move)
 
             if isWinner(theBoard, playerLetter):
                 drawBoard(theBoard)
-                print(player1name + ' won the game!')
+                print(player1.name + ' won the game!')
                 gameIsPlaying = False
             else:
                 if isBoardFull(theBoard):
@@ -177,7 +181,7 @@ while True:
 
             if isWinner(theBoard, player2Letter):
                 drawBoard(theBoard)
-                print(player2name + ' won the game!')
+                print(player2.name + ' won the game!')
                 gameIsPlaying = False
             else:
                 if isBoardFull(theBoard):

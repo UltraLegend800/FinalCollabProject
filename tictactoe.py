@@ -1,7 +1,7 @@
 # Tic Tac Toe
 
 import random
-
+class Players:
 def drawBoard(board):
     # This function prints out the board that it was passed.
 

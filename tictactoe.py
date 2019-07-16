@@ -2,6 +2,8 @@
 
 import random
 
+player1total = 0
+player2total = 0
 class Player:
   def __init__(self, name):
     self.name = name
@@ -139,6 +141,17 @@ def isBoardFull(board):
             return False
     return True
 
+def printScoreboard(player1score, player2score):
+    global player1total
+    global player2total
+    global player1
+    global player2
+    player1total += player1score
+    player2total += player2score
+    print()
+    print('Scoreboard:')
+    print(player1 + str(player1total))
+    print(player2 + str(player2total))
 
 print('Welcome to Tic Tac Toe!')
 print('What is Player 1\'s name?')
@@ -161,15 +174,18 @@ while True:
             drawBoard(theBoard)
             move = getPlayerMove(theBoard)
             makeMove(theBoard, playerLetter, move)
+            drawBoard(theBoard)
 
             if isWinner(theBoard, playerLetter):
                 drawBoard(theBoard)
                 print(player1.name + ' won the game!')
+                printScoreboard(1,0)
                 gameIsPlaying = False
             else:
                 if isBoardFull(theBoard):
                     drawBoard(theBoard)
                     print('The game is a tie!')
+                    printScoreboard(0,0)
                     break
                 else:
                     turn = 'player2'
@@ -182,14 +198,17 @@ while True:
             if isWinner(theBoard, player2Letter):
                 drawBoard(theBoard)
                 print(player2.name + ' won the game!')
+                printScoreboard(0,1)
                 gameIsPlaying = False
             else:
                 if isBoardFull(theBoard):
                     drawBoard(theBoard)
                     print('The game is a tie!')
+                    printScoreboard(0,0)
                     break
                 else:
                     turn = 'player1'
 
     if not playAgain():
         break
+

@@ -5,6 +5,17 @@ import random
 player1total = 0
 player2total = 0
 class TicTacToe:
+  def showInstructions(self):
+      print('Welcome to Tic Tac Toe! Here you will take turns playing a 2-player match. When it is your turn, you will input a number to put in your respective letter of X or O. Each number stands for a section of the board shown in the figure below:')
+      print()
+      print(' 7 | 8 | 9')
+      print('-----------')
+      print('   |   |')
+      print(' 4 | 5 | 6')
+      print('-----------')
+      print('   |   |')
+      print(' 1 | 2 | 3')
+      print()
   
   def drawBoard(self, board):
       # This function prints out the board that it was passed.
@@ -94,7 +105,7 @@ class TicTacToe:
       print(player1name + ":" + str(player1total))
       print(player2name + ":" + str(player2total))
 game = TicTacToe()
-print('Welcome to Tic Tac Toe!')
+game.showInstructions()
 print('What is Player 1\'s name?')
 player1name = input()
 print('What is Player 2\'s name?')
@@ -116,7 +127,6 @@ while True:
             game.drawBoard(theBoard)
 
             if game.isWinner(theBoard, playerLetter):
-                game.drawBoard(theBoard)
                 print(player1name + ' won the game!')
                 game.printScoreboard(1,0)
                 gameIsPlaying = False
@@ -135,7 +145,6 @@ while True:
             game.makeMove(theBoard, player2Letter, move)
 
             if game.isWinner(theBoard, player2Letter):
-                game.drawBoard(theBoard)
                 print(player2name + ' won the game!')
                 game.printScoreboard(0,1)
                 gameIsPlaying = False
@@ -150,3 +159,4 @@ while True:
 
     if not game.playAgain():
         break
+

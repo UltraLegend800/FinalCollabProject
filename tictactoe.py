@@ -35,14 +35,14 @@ class TicTacToe:
       print('   |   |')
 
   def inputPlayerLetter(self):
-      # Lets the player type which letter they want to be.
-      # Returns a list with the player's letter as the first item, and the computer's letter as the second.
+      # Lets player 1 type which letter they want to be.
+      # Returns a list with player 1's letter as the first item, and player 2's letter as the second.
       letter = ''
       while not (letter == 'X' or letter == 'O'):
           print('Does '  + player1name + ' want to be X or O?')
           letter = input().upper()
 
-      # the first element in the tuple is the player's letter, the second is the computer's letter.
+      # the first element in the tuple is player 1's letter, the second is player 2's letter.
       if letter == 'X':
           return ['X', 'O']
       else:
@@ -80,7 +80,7 @@ class TicTacToe:
       return board[move] == ' '
 
   def getPlayerMove(self, board):
-      # Let the player type in his move.
+      # Let the player that's currently playing type in his move.
       move = ' '
       while move not in '1 2 3 4 5 6 7 8 9'.split() or not self.isSpaceFree(board, int(move)):
           print('What is ' + turn + '\'s next move? (1-9)')
@@ -95,6 +95,7 @@ class TicTacToe:
       return True
 
   def printScoreboard(self, player1score, player2score):
+    #Updates the scoreboard based on who won the game
       global player1total
       global player2total
       global player1

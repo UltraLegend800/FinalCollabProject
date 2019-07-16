@@ -38,7 +38,7 @@ class TicTacToe:
       # Returns a list with the player's letter as the first item, and the computer's letter as the second.
       letter = ''
       while not (letter == 'X' or letter == 'O'):
-          print('Does Player 1 want to be X or O?')
+          print('Does '  + player1name + ' want to be X or O?')
           letter = input().upper()
 
       # the first element in the tuple is the player's letter, the second is the computer's letter.
@@ -50,9 +50,9 @@ class TicTacToe:
   def whoGoesFirst(self):
       # Randomly choose the player who goes first.
       if random.randint(0, 1) == 0:
-          return 'player2'
+          return player2name
       else:
-          return 'player1'
+          return player1
 
   def playAgain(self):
       # This function returns True if the player wants to play again, otherwise it returns False.
@@ -82,7 +82,7 @@ class TicTacToe:
       # Let the player type in his move.
       move = ' '
       while move not in '1 2 3 4 5 6 7 8 9'.split() or not self.isSpaceFree(board, int(move)):
-          print('What is your next move? (1-9)')
+          print('What is ' + turn + 's next move? (1-9)')
           move = input()
       return int(move)
 
@@ -119,7 +119,7 @@ while True:
     gameIsPlaying = True
 
     while gameIsPlaying:
-        if turn == 'player1':
+        if turn == player1name:
             # Player 1's turn.
             game.drawBoard(theBoard)
             move = game.getPlayerMove(theBoard)
@@ -137,7 +137,7 @@ while True:
                     game.printScoreboard(0,0)
                     break
                 else:
-                    turn = 'player2'
+                    turn = player2name
 
         else:
             # Player 2's turn.
@@ -155,7 +155,7 @@ while True:
                     game.printScoreboard(0,0)
                     break
                 else:
-                    turn = 'player1'
+                    turn = player1name
 
     if not game.playAgain():
         break

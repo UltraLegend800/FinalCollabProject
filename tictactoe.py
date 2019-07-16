@@ -8,6 +8,7 @@ class TicTacToe:
   def showInstructions(self):
       print('Welcome to Tic Tac Toe! Here you will take turns playing a 2-player match. When it is your turn, you will input a number to put in your respective letter of X or O. Each number stands for a section of the board shown in the figure below:')
       print()
+      print('   |   |')
       print(' 7 | 8 | 9')
       print('-----------')
       print('   |   |')
@@ -52,7 +53,7 @@ class TicTacToe:
       if random.randint(0, 1) == 0:
           return player2name
       else:
-          return player1
+          return player1name
 
   def playAgain(self):
       # This function returns True if the player wants to play again, otherwise it returns False.
@@ -82,7 +83,7 @@ class TicTacToe:
       # Let the player type in his move.
       move = ' '
       while move not in '1 2 3 4 5 6 7 8 9'.split() or not self.isSpaceFree(board, int(move)):
-          print('What is ' + turn + 's next move? (1-9)')
+          print('What is ' + turn + '\'s next move? (1-9)')
           move = input()
       return int(move)
 
@@ -159,4 +160,5 @@ while True:
 
     if not game.playAgain():
         break
+
 
